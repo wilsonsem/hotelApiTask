@@ -39,7 +39,6 @@ exports.getAllRoomTypes = async (req, res) =>{
 exports.addRoomRecord = async (req, res) => {
 
     const { name, price} = req.body
-    console.log("Working")
 
     try{
         const newRoom = await Room.create(req.body)
@@ -66,7 +65,7 @@ exports.getAllRooms = async (req, res) =>{
 
 //get a single room record
 exports.getSingleRoom = async (req, res) =>{
-    // const { id } = req.params
+
     const roomrecord = await Room.findById(req.params.id)
                     .then((roomrecord) => {
                         res.status(200).json(roomrecord)
