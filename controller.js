@@ -59,7 +59,7 @@ exports.getAllRooms = async (req, res) =>{
                         res.status(200).json(newRoom)
                     })
                     .catch((err) => {
-                        res.json({message : 'oOPs... cannot retrieve expense list at the moment', errror: err})
+                        res.json({message : 'Rooms not available', errror: err})
                     })
 }
 
@@ -67,24 +67,24 @@ exports.getAllRooms = async (req, res) =>{
 //get a single room record
 exports.getSingleRoom = async (req, res) =>{
     // const { id } = req.params
-    const singleExpense = await Expense.findById(req.params.id)
-                    .then((singleExpense) => {
-                        res.status(200).json(singleExpense)
+    const roomrecord = await Room.findById(req.params.id)
+                    .then((roomrecord) => {
+                        res.status(200).json(roomrecord)
                     })
                     .catch((err) => {
-                        res.json({message : 'No such record', errror: err})
+                        res.json({message : 'No such room record', errror: err})
                     })
 }
 
 // update a single room record 
 exports.updateRoomRecord = async (req , res) => {
 
-    const updatedExpense = await Expense.findOneAndUpdate(req.params.id, req.body)
-                .then ((updatedExpense) => {
-                    res.status(200).json(updatedExpense)
+    const updatedRecord = await Expense.findOneAndUpdate(req.params.id, req.body)
+                .then ((updatedRecord) => {
+                    res.status(200).json(updatedRecord)
                 })
                 .catch((err) => {
-                    res.json({message : "Error updating expense record", error:err})
+                    res.json({message : "Error updating room record", error:err})
                 })
 }
 
@@ -97,7 +97,7 @@ exports.deleteRoomRecord = async (req , res) =>{
                     res.status(200).json(deletedExpense)
                 })
                 .catch((err) => {
-                    res.json({message: "Error deleting expense", error:err})
+                    res.json({message: "Error deleting record", error:err})
                 })
 }
 
