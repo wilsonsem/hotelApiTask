@@ -1,6 +1,6 @@
 // const expenseDb = require('../models/expense')
 const mongoose = require('mongoose')
-const { RoomType } = require('./roomModel')
+const { RoomType, Room } = require('./roomModel')
 const roomModel = require('./roomModel')
 
 
@@ -33,8 +33,8 @@ exports.getAllRoomTypes = async (req, res) =>{
 
 
 
-// rooms endpoint
 
+// rooms endpoint
 //add room record
 exports.addRoomRecord = async (req, res) => {
 
@@ -50,10 +50,10 @@ exports.addRoomRecord = async (req, res) => {
     }
 } 
 
+
 // get all room records
 exports.getAllRooms = async (req, res) =>{
 
-    
     const newRoom = await Room.find({})
                     .then((newRoom) => {
                         res.status(200).json(newRoom)
@@ -76,10 +76,11 @@ exports.getSingleRoom = async (req, res) =>{
                     })
 }
 
+
 // update a single room record 
 exports.updateRoomRecord = async (req , res) => {
 
-    const updatedRecord = await Expense.findOneAndUpdate(req.params.id, req.body)
+    const updatedRecord = await Room.findOneAndUpdate(req.params.id, req.body)
                 .then ((updatedRecord) => {
                     res.status(200).json(updatedRecord)
                 })
@@ -88,11 +89,10 @@ exports.updateRoomRecord = async (req , res) => {
                 })
 }
 
-
 // delete an single room record
 exports.deleteRoomRecord = async (req , res) =>{
 
-    const deletedExpense = await Expense.findOneAndDelete(req.params.id)
+    const deletedExpense = await Room.findOneAndDelete(req.params.id)
                 .then((deletedExpense) =>{
                     res.status(200).json(deletedExpense)
                 })
